@@ -29,13 +29,18 @@ const AuthForm = ({type} : {type : FormType}) => {
     },
   })
  
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  const onSubmit = async(values: z.infer<typeof formSchema>) => {
     console.log(values)
   }
   return (
+    <>
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
+      <form onSubmit={form.handleSubmit(onSubmit)} className="auth-form">
+        <h1 className='form-title'>
+          {type === "sign-in" ? "Sign In" : "Sign Up"}
+        </h1>
+        {type === "sign-up" && ( 
+          <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
@@ -50,10 +55,13 @@ const AuthForm = ({type} : {type : FormType}) => {
               <FormMessage />
             </FormItem>
           )}
-        />
+        />)}
         <Button type="submit">Submit</Button>
       </form>
     </Form>
+
+    {/* otp verification */}
+    </>
   )
 }
 

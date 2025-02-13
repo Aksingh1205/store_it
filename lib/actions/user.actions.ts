@@ -3,7 +3,7 @@
 import { ID, Query } from "node-appwrite";
 import { appwriteConfig } from "../appwrite/config";
 import { createAdminClient } from "../appwrite";
-import { avatarPlaceholderUrl } from "@/constants";
+import { parseStringify } from "../utils";
 
 const getUserByEmail = async(email: string) => {
     const {databases} = await createAdminClient();
@@ -55,5 +55,5 @@ const createAccount = async({fullName, email} : {fullName: string; email: string
         )
     }
 
-    return parseStringify(accountId);
+    return parseStringify({accountId});
 }

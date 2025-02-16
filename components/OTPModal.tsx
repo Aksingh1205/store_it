@@ -88,7 +88,7 @@ const OTPModal = ({accountId, email} : {accountId : string; email : string}) => 
                         )}
                     </AlertDialogAction>
 
-                    <div>
+                    <div className="subtitle-2 mt-2 text-center text-light-100">
                         Didn&apos;t get a code?
                         <Button
                             type="button"

@@ -18,6 +18,7 @@ import {
   } from "@/components/ui/input-otp"
 import Image from "next/image"
 import { useState } from "react"
+import { Button } from "./ui/button"
   
   
 
@@ -87,7 +88,17 @@ const OTPModal = ({accountId, email} : {accountId : string; email : string}) => 
                         )}
                     </AlertDialogAction>
 
-                    
+                    <div>
+                        Didn&apos;t get a code?
+                        <Button
+                            type="button"
+                            variant='link'
+                            className="pl-1 text-brand"
+                            onClick={handleResendOtp}
+                        >
+                            Resend OTP
+                        </Button>
+                    </div>
                 </div>
             </AlertDialogFooter>
         </AlertDialogContent>

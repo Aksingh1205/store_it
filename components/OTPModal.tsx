@@ -19,7 +19,7 @@ import Image from "next/image"
 import { useState } from "react"
 import { Button } from "./ui/button"
 import { useRouter } from "next/navigation"
-import { verifySecret } from "@/lib/actions/user.actions"
+import { sendEmailOTP, verifySecret } from "@/lib/actions/user.actions"
   
   
 
@@ -46,7 +46,7 @@ const OTPModal = ({accountId, email} : {accountId : string; email : string}) => 
     }
 
     const handleResendOtp = async () => {
-        //call api to resend otp
+        await sendEmailOTP({email})
     }
   return (
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>

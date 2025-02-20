@@ -1,6 +1,7 @@
 'use client'
 
 import { navItems } from '@/constants'
+import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -39,6 +40,17 @@ const Sidebar = () => {
                 pathname === url && "shad-active",
               )}
             >
+               <Image
+                  src={icon}
+                  alt={name}
+                  width={24}
+                  height={24}
+                  className={cn(
+                    "nav-icon",
+                    pathname === url && "nav-icon-active",
+                  )}
+                />
+                <p className="hidden lg:block">{name}</p>
             </li>
             </Link>
           ))}

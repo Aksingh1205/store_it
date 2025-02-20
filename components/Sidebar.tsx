@@ -56,6 +56,16 @@ const Sidebar = () => {
           ))}
         </ul>
       </nav>
+
+      <Image
+        src="/assets/images/files-2.png"
+        alt="logo"
+        width={506}
+        height={418}
+        className="w-full"
+      />
+
+      
     </aside>
   )
 }

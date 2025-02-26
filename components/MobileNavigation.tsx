@@ -12,6 +12,9 @@ import {
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Separator } from './ui/separator'
+import Link from 'next/link'
+import { cn } from '@/lib/utils'
+import { navItems } from '@/constants'
 
 interface Props {
   $id: string;
@@ -51,7 +54,6 @@ const MobileNavigation = ({
           />
         </SheetTrigger>
         <SheetContent className='shad-sheet h-screen px-3'>
-          <SheetHeader>
             <SheetTitle>
             <div className="header-user">
               <Image
@@ -68,11 +70,33 @@ const MobileNavigation = ({
               </div>
               <Separator className="mb-4 bg-light-200/20" />
             </SheetTitle>
-            <SheetDescription>
-              This action cannot be undone. This will permanently delete your account
-              and remove your data from our servers.
-            </SheetDescription>
-          </SheetHeader>
+
+            <nav className='mobile-nav'>
+              <ul className='mobile-nav-list'>
+                {navItems.map(({ url, name, icon }) => (
+                  <Link key={name} href={url} className="lg:w-full">
+                    <li
+                      className={cn(
+                        "mobile-nav-item",
+                        pathname === url && "shad-active",
+                      )}
+                    >
+                      <Image
+                        src={icon}
+                        alt={name}
+                        width={24}
+                        height={24}
+                        className={cn(
+                          "nav-icon",
+                          pathname === url && "nav-icon-active",
+                        )}
+                      />
+                      <p className="hidden lg:block">{name}</p>
+                    </li>
+                  </Link>
+                ))}
+              </ul>
+            </nav>
         </SheetContent>
       </Sheet>
 

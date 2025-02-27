@@ -15,6 +15,8 @@ import { Separator } from './ui/separator'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { navItems } from '@/constants'
+import { Button } from './ui/button'
+import FileUploader from './FileUploader'
 
 interface Props {
   $id: string;
@@ -98,6 +100,23 @@ const MobileNavigation = ({
               </ul>
             </nav>
             <Separator className="my-5 bg-light-200/20" />
+
+            <div className='flex flex-col justify-between gap-5'>
+              <FileUploader/>
+              <Button
+              type="submit"
+              className="mobile-sign-out-button"
+              onClick={async () => await signOutUser()}
+              >
+              <Image
+                src="/assets/icons/logout.svg"
+                alt="logo"
+                width={24}
+                height={24}
+              />
+              <p>Logout</p>
+            </Button>
+            </div>
         </SheetContent>
       </Sheet>
 

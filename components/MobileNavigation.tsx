@@ -4,8 +4,6 @@ import React, { useState } from 'react'
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
@@ -17,6 +15,7 @@ import { cn } from '@/lib/utils'
 import { navItems } from '@/constants'
 import { Button } from './ui/button'
 import FileUploader from './FileUploader'
+import { signOutUser } from '@/lib/actions/user.actions'
 
 interface Props {
   $id: string;

@@ -91,12 +91,13 @@ const MobileNavigation = ({
                           pathname === url && "nav-icon-active",
                         )}
                       />
-                      <p className="hidden lg:block">{name}</p>
+                      <p>{name}</p>
                     </li>
                   </Link>
                 ))}
               </ul>
             </nav>
+            <Separator className="my-5 bg-light-200/20" />
         </SheetContent>
       </Sheet>
 

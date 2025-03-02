@@ -3,6 +3,8 @@
 import React, {useCallback} from 'react'
 import {useDropzone} from 'react-dropzone'
 import { Button } from './ui/button'
+import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 interface Props {
   ownerId: string;
@@ -20,7 +22,13 @@ const FileUploader = ({ownerId, accountId, className} : Props) => {
     <div {...getRootProps()} className='cursor-pointer'>
       <input {...getInputProps()} />
       <Button type='button' className={cn("uploader-button", className)}>
-
+        <Image
+            src="/assets/icons/upload.svg"
+            alt="upload"
+            width={24}
+            height={24}
+          />{" "}
+          <p>Upload</p>
       </Button>
       {
         isDragActive ?

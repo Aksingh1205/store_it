@@ -1,6 +1,12 @@
 import React from 'react'
 
-const Thumbnail = () => {
+interface Props {
+  type: string;
+  extension: string; 
+  url?: string;
+}
+
+const Thumbnail = ({type, extension, url = ""} : Props) => {
   return (
     <div>Thumbnail</div>
   )

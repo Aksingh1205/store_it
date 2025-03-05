@@ -1,5 +1,7 @@
 'use server'
 
-export const uploadFile = async (file: File) => {
-    
+
+export const uploadFile = async ({file, ownerId, accountId, path}: UploadFileProps) => {
+
+
 }

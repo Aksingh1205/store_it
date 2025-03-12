@@ -7,7 +7,19 @@ const page = async({params} : SearchParamProps) => {
         <section className='w-full'>
             <h1 className='h1 capitalize'> 
                 {type}
-            </h1>   
+            </h1> 
+
+            <div className='total-size-section'>
+                <p className='body-1'>
+                    Total: <span className='h5'>0 MB</span>
+                </p>
+
+                <div className='sort-container'>
+                    <p className='body-1 hidden text-light-200 sm:block'>
+                        
+                    </p>
+                </div>
+            </div>  
         </section>
     </div>
   )

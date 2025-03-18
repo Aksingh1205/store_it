@@ -1,8 +1,9 @@
+import { Models } from 'node-appwrite'
 import React from 'react'
 
-const Card = () => {
+const Card = ({file} : {file : Models.Document}) => {
   return (
-    <div>Card</div>
+    <div>{file.name}</div>
   )
 }
 

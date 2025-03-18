@@ -1,9 +1,21 @@
+import Link from 'next/link'
 import { Models } from 'node-appwrite'
 import React from 'react'
+import Thumbnail from './Thumbnail'
 
 const Card = ({file} : {file : Models.Document}) => {
   return (
-    <div>{file.name}</div>
+    <Link href={file.url} target='_blank' className='file-card'>
+      <div className='flex justify-between'>
+        <Thumbnail type={file.type} extension={file.extension} url={file.url} className='!size-20' imageClassName='!size-11'/>
+
+        <div>
+          
+        </div>
+      </div>
+      
+      {file.name}
+    </Link>
   )
 }
 

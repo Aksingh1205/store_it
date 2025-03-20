@@ -30,14 +30,15 @@ const ActionDropDown = ({ file }: { file: Models.Document }) => {
     const [action, setAction] = useState<ActionType | null>(null)
 
     const renderDialogContent = () => {
+        if(!action) return null
+
+        const {label, value} = action;
         return (
-            <DialogContent>
-                <DialogHeader>
-                <DialogTitle>Are you absolutely sure?</DialogTitle>
-                <DialogDescription>
-                    This action cannot be undone. This will permanently delete your account
-                    and remove your data from our servers.
-                </DialogDescription>
+            <DialogContent className="shad-dialog button">
+                <DialogHeader className="flex flex-col gap-3">
+                <DialogTitle className="text-center text-light-100">
+                    {label}
+                </DialogTitle>
                 </DialogHeader>
             </DialogContent>
         )

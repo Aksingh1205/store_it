@@ -25,6 +25,8 @@ import { Models } from "node-appwrite"
 import { useState } from "react"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
+import { usePathname } from "next/navigation"
+import { renameFile } from "@/lib/actions/file.actions"
   
 
 const ActionDropDown = ({ file }: { file: Models.Document }) => {
@@ -34,6 +36,8 @@ const ActionDropDown = ({ file }: { file: Models.Document }) => {
     const [name, setName] = useState(file.name)
     const [isLoading, setIsLoading] = useState(false)
 
+    const path = usePathname()
+
     const closeAllModals = () => {
         setIsModalOpen(false)
         setIsDropdownOpen(false)
@@ -42,7 +46,22 @@ const ActionDropDown = ({ file }: { file: Models.Document }) => {
         //setEmails([])
     }
 
-    const handleAction = async () => {}
+    const handleAction = async () => {
+        if(!action) return;
+        setIsLoading(true)
+        let success = false;
+
+        const actions = {
+            rename: () => renameFile({fileId: file.$id, name, path, extension: file.extension}),
+            share: () => {}, 
+            delete: () => {},
+        }
+
+        success = await actions[action.value as keyof typeof actions]();
+
+        if(success) closeAllModals()
+        setIsLoading(false)
+    }
 
     const renderDialogContent = () => {
         if(!action) return null

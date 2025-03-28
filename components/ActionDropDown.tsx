@@ -34,6 +34,16 @@ const ActionDropDown = ({ file }: { file: Models.Document }) => {
     const [name, setName] = useState(file.name)
     const [isLoading, setIsLoading] = useState(false)
 
+    const closeAllModals = () => {
+        setIsModalOpen(false)
+        setIsDropdownOpen(false)
+        setAction(null)
+        setName(file.name)
+        //setEmails([])
+    }
+
+    const handleAction = async () => {}
+
     const renderDialogContent = () => {
         if(!action) return null
 
@@ -54,10 +64,10 @@ const ActionDropDown = ({ file }: { file: Models.Document }) => {
                 </DialogHeader>
                 {['rename', 'delete', 'share'].includes(value) && (
                     <DialogFooter className="flex flex-col gap-3 md:flex-row">
-                        <Button>
+                        <Button onClick={closeAllModals} className="modal-cancel-button">
                             Cancel
                         </Button>
-                        <Button>
+                        <Button onClick={handleAction} className="modal-submit-button">
                             <p className="capitalize">{value}</p>
                             {isLoading && (
                                 <Image

@@ -3,6 +3,7 @@ import React from 'react'
 import Thumbnail from '../Thumbnail'
 import FormattedDateTime from '../FormattedDateTime'
 import { convertFileSize, formatDateTime } from '@/lib/utils'
+import { Input } from './input'
 
 const DetailRow = ({ label, value }: { label: string; value: string }) => (
   <div className='flex'>
@@ -46,6 +47,24 @@ export const ShareInput = ({file, onInputChange, onRemove} : Props) => {
     <ImageThumbnail file={file} />
       <div className='share-wrapper'>
         <p className='subtitle-2 pl-1 text-light-100'>Share file with other users</p>
+        <Input
+          type='email'
+          placeholder='Enter email address'
+          onChange={(e) => onInputChange(e.target.value.trim().split(','))}  
+          className='share-input-field'
+        />
+          <div className='pt-4'>
+            <div className='flex justify-between'>
+              <p className='subtitle-2 text-light-100'>Shared with</p>
+              <p className='subtitle-2 text-light-200'>
+                {file.users.length} users
+              </p>
+            </div>
+
+              <ul>
+                
+              </ul>
+          </div>
       </div>
     </>
   )

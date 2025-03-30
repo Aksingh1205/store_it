@@ -4,6 +4,8 @@ import Thumbnail from '../Thumbnail'
 import FormattedDateTime from '../FormattedDateTime'
 import { convertFileSize, formatDateTime } from '@/lib/utils'
 import { Input } from './input'
+import { Button } from './button'
+import Image from 'next/image'
 
 const DetailRow = ({ label, value }: { label: string; value: string }) => (
   <div className='flex'>
@@ -61,8 +63,15 @@ export const ShareInput = ({file, onInputChange, onRemove} : Props) => {
               </p>
             </div>
 
-              <ul>
-                
+              <ul className='pt-2'>
+                {file.users.map((email: string) => (
+                  <li key={email} className='flex justify-between items-center gap-2'>
+                    <p className='subtitle-2'>{email}</p>
+                    <Button onClick={() => onRemove(email)}>
+                      <Image src='/assets/icons/remove.svg' alt='Remove' width={24} height={24} className='remove-icon'/>
+                    </Button>
+                  </li>
+                ))}
               </ul>
           </div>
       </div>

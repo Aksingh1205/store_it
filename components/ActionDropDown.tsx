@@ -27,8 +27,7 @@ import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import { usePathname } from "next/navigation"
 import { renameFile } from "@/lib/actions/file.actions"
-import { FileDetails } from "./ui/ActionsModalContent"
-import ShareInput from "./ShareInput"
+import { FileDetails, ShareInput } from "./ui/ActionsModalContent"
   
 
 const ActionDropDown = ({ file }: { file: Models.Document }) => {
@@ -85,8 +84,8 @@ const ActionDropDown = ({ file }: { file: Models.Document }) => {
                         onChange={(e) => setName(e.target.value)}
                     />
                 )}
-                {value && 'details' && <FileDetails file={file} />}
-                {value === 'share' && <ShareInput file={file} />}
+                {value === 'details' && <FileDetails file={file} />}
+                {value === 'share' && <ShareInput file={file} onInputChange={setEmails} onRemove={handleRemoveUser} />}
                 
                 </DialogHeader>
                 {['rename', 'delete', 'share'].includes(value) && (

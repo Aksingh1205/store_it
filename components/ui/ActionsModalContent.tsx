@@ -34,3 +34,20 @@ export const FileDetails = ({file}: {file: Models.Document}) => {
   )
 }
 
+interface Props {
+  file: Models.Document
+  onInputChange: React.Dispatch<React.SetStateAction<string[]>>
+  onRemove: (email: string) => void
+}
+
+export const ShareInput = ({file, onInputChange, onRemove} : Props) => {
+  return (
+    <>
+    <ImageThumbnail file={file} />
+      <div className='share-wrapper'>
+        <p className='subtitle-2 pl-1 text-light-100'>Share file with other users</p>
+      </div>
+    </>
+  )
+}
+

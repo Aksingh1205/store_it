@@ -1,48 +1,48 @@
-'use server';
+"use server";
 
 import { Account, Avatars, Client, Databases, Storage } from "node-appwrite";
-import { appwriteConfig } from "./config";
+import { appwriteConfig } from "@/lib/appwrite/config";
 import { cookies } from "next/headers";
 
-export const createSessionClient = async() => {
-    const client = new Client()
-        .setEndpoint(appwriteConfig.endpointUrl)
-        .setProject(appwriteConfig.projectId)
+export const createSessionClient = async () => {
+  const client = new Client()
+    .setEndpoint(appwriteConfig.endpointUrl)
+    .setProject(appwriteConfig.projectId);
 
-    const session = (await cookies()).get('appwrite-session')
+  const session = (await cookies()).get("appwrite-session");
 
-    if(!session || !session.value) throw new Error("No session found")
-    
-    client.setSession(session.value)
+  if (!session || !session.value) throw new Error("No session");
 
-    return {
-        get account(){
-            return new Account(client);
-        },
-        get databases(){
-            return new Databases(client);
-        }
-    }
-}
+  client.setSession(session.value);
 
-export const createAdminClient = async() => {
-    const client = new Client()
-        .setEndpoint(appwriteConfig.endpointUrl)
-        .setProject(appwriteConfig.projectId)
-        .setKey(appwriteConfig.secretKey)
+  return {
+    get account() {
+      return new Account(client);
+    },
+    get databases() {
+      return new Databases(client);
+    },
+  };
+};
 
-    return {
-        get account(){
-            return new Account(client);
-        },
-        get databases(){
-            return new Databases(client);
-        },
-        get storage(){
-            return new Storage(client);
-        },
-        get avatars(){
-            return new Avatars(client);
-        }
-    }
-}
+export const createAdminClient = async () => {
+  const client = new Client()
+    .setEndpoint(appwriteConfig.endpointUrl)
+    .setProject(appwriteConfig.projectId)
+    .setKey(appwriteConfig.secretKey);
+
+  return {
+    get account() {
+      return new Account(client);
+    },
+    get databases() {
+      return new Databases(client);
+    },
+    get storage() {
+      return new Storage(client);
+    },
+    get avatars() {
+      return new Avatars(client);
+    },
+  };
+};

@@ -14,6 +14,7 @@ const handleError = (error : unknown, message : string) => {
 }
 
 export const uploadFile = async ({file, ownerId, accountId, path}: UploadFileProps) => {
+    console.log("Uploading file with ownerId:", ownerId); // Log ownerId
     const {storage, databases} = await createAdminClient();
 
     try {
@@ -53,14 +54,13 @@ export const uploadFile = async ({file, ownerId, accountId, path}: UploadFilePro
     } catch (error) {
         handleError(error, "Failed to upload file");
     }
-
 }
 
 const createQueries = (currentUser: Models.Document) => {
     const queries = [
         Query.or([
             Query.equal('owner', [currentUser.$id]),
-            Query.contains('users', [currentUser.$id]),
+            Query.contains('users', [currentUser.email]),
         ])
     ]
 
